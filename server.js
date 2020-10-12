@@ -3,7 +3,9 @@ const express = require('express')
 const app = express()
 // const cors = require('cors')
 // app.use(cors())
+
 const server = require('http').Server(app)
+
 const io = require('socket.io')(server)
 const { ExpressPeerServer } = require('peer');
 const peerServer = ExpressPeerServer(server, {
@@ -24,9 +26,9 @@ app.get('/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
 
-app.get("/", (req, res) => {
-  //res.render("room", {roomId}: req.params.room)
-})
+// app.get("/", (req, res) => {
+//   res.render("room", {roomId}: req.params.room)
+// })
 
 io.on('connection', socket => {
   socket.on('join-room', (roomId, userId) => {
