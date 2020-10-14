@@ -1,8 +1,8 @@
 /*jshint esversion: 6 */
 const express = require('express')
 const app = express()
-// const cors = require('cors')
-// app.use(cors())
+const cors = require('cors')
+app.use(cors())
 
 const server = require('http').Server(app)
 
