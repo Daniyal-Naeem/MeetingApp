@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-const cors = require('cors')
+
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
