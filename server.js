@@ -1,7 +1,9 @@
 /*jshint esversion: 6 */
-const express = require('express')
-const app = express()
-const cors = require('cors')
+
+const express = require('express');
+const app = express();
+const cors = require('cors');
+
 app.use(cors())
 
 const server = require('http').Server(app)
@@ -26,9 +28,6 @@ app.get('/:room', (req, res) => {
   res.render('room', { roomId: req.params.room })
 })
 
-// app.get("/", (req, res) => {
-//   res.render("room", {roomId}: req.params.room)
-// })
 
 io.on('connection', socket => {
   socket.on('join-room', (roomId, userId) => {
