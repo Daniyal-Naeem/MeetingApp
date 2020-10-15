@@ -20,7 +20,7 @@ navigator.mediaDevices.getUserMedia({
 }).then(stream => {
   myVideoStream = stream;
   addVideoStream(myVideo, stream)
-  sender.myPeer.on('call', call => {
+  myPeer.on('call', call => {
     call.answer(stream)
     const video = document.createElement('video')
     call.on('stream', userVideoStream => {
@@ -111,6 +111,16 @@ const playStop = () => {
 }
 
 
+// const  shareScreen = () => {
+// navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(stream => {
+// const screenTrack = stream.getTracks()[0];
+// senders.current.find(sender => sender.track.kind === 'video').replaceTrack(screenTrack);
+// screenTrack.onended = function() {
+//     senders.current.find(sender => sender.track.kind === "video").replaceTrack(userStream.current.getTracks()[1]);
+// }
+// })
+// }
+
 
 const setMuteButton = () => {
   const html = `
@@ -127,6 +137,7 @@ const setUnmuteButton = () => {
   `
   document.querySelector('.main__mute_button').innerHTML = html;
 }
+
 
 const setStopVideo = () => {
   const html = `

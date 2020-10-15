@@ -29,7 +29,7 @@
          padding: 8px;
       }
    </style>
-   <scrip>const senders = useRef([]);</scrip>
+   
 </head>
 <body>
    <div class="main">
@@ -91,16 +91,7 @@
       </div>
    </div>
 
-   <script>
-      function shareScreen() {
-  navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(stream => {
-      const screenTrack = stream.getTracks()[0];
-      senders.current.find(sender => sender.track.kind === 'video').replaceTrack(screenTrack);
-      screenTrack.onended = function() {
-          senders.current.find(sender => sender.track.kind === "video").replaceTrack(userStream.current.getTracks()[1]);
-      }
-  })
-}
-      </script>
+ 
 </body>
 </html>
+ 
