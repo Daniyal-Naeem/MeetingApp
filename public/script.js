@@ -1,15 +1,10 @@
-/*jshint esversion: 6 */
-
-const socket = io('/');
-const videoGrid = document.getElementById('video-grid');
+const socket = io('/')
+const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3030' 
+  port: '3030'
 })
-
-
-
 let myVideoStream;
 const myVideo = document.createElement('video')
 myVideo.muted = true;
@@ -31,12 +26,8 @@ navigator.mediaDevices.getUserMedia({
   socket.on('user-connected', userId => {
     connectToNewUser(userId, stream)
   })
-
- 
-
   // input value
   let text = $("input");
-
   // when press enter send message
   $('html').keydown(function (e) {
     if (e.which == 13 && text.val().length !== 0) {
@@ -110,18 +101,6 @@ const playStop = () => {
   }
 }
 
-
-// const  shareScreen = () => {
-// navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(stream => {
-// const screenTrack = stream.getTracks()[0];
-// senders.current.find(sender => sender.track.kind === 'video').replaceTrack(screenTrack);
-// screenTrack.onended = function() {
-//     senders.current.find(sender => sender.track.kind === "video").replaceTrack(userStream.current.getTracks()[1]);
-// }
-// })
-// }
-
-
 const setMuteButton = () => {
   const html = `
     <i class="fas fa-microphone"></i>
@@ -137,7 +116,6 @@ const setUnmuteButton = () => {
   `
   document.querySelector('.main__mute_button').innerHTML = html;
 }
-
 
 const setStopVideo = () => {
   const html = `
