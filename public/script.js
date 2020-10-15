@@ -1,12 +1,14 @@
 /*jshint esversion: 6 */
 
-const socket = io('/')
-const videoGrid = document.getElementById('video-grid')
+const socket = io('/');
+const videoGrid = document.getElementById('video-grid');
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '443' 
+  port: '3030' 
 })
+
+
 
 let myVideoStream;
 const myVideo = document.createElement('video')
@@ -18,7 +20,7 @@ navigator.mediaDevices.getUserMedia({
 }).then(stream => {
   myVideoStream = stream;
   addVideoStream(myVideo, stream)
-  myPeer.on('call', call => {
+  sender.myPeer.on('call', call => {
     call.answer(stream)
     const video = document.createElement('video')
     call.on('stream', userVideoStream => {
@@ -29,6 +31,8 @@ navigator.mediaDevices.getUserMedia({
   socket.on('user-connected', userId => {
     connectToNewUser(userId, stream)
   })
+
+ 
 
   // input value
   let text = $("input");
@@ -105,6 +109,8 @@ const playStop = () => {
     myVideoStream.getVideoTracks()[0].enabled = true;
   }
 }
+
+
 
 const setMuteButton = () => {
   const html = `
