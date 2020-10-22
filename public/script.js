@@ -1,11 +1,12 @@
+/* es: 6*/
+
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '443'
+  port: '3030'
 }) 
-
 
 
 let myVideoStream;
@@ -15,14 +16,17 @@ const peers = {}
 navigator.mediaDevices.getUserMedia({
   video: true,
   audio: true
+
 }).then(stream => {
   myVideoStream = stream;
   addVideoStream(myVideo, stream)
+ 
   myPeer.on('call', call => {
     call.answer(stream)
     const video = document.createElement('video')
     call.on('stream', userVideoStream => {
       addVideoStream(video, userVideoStream)
+   
     })
   })
 
@@ -45,6 +49,7 @@ navigator.mediaDevices.getUserMedia({
 })
 
 
+
 socket.on('user-disconnected', userId => {
   if (peers[userId]) peers[userId].close()
 })
@@ -55,14 +60,29 @@ myPeer.on('open', id => {
 
 //screenShare
 function shareScreen() {
-  navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(stream => {
-      const screenTrack = stream.getTracks()[0];
-      userId.current.find(userid => userid.track.kind === 'video').replaceTrack(screenTrack);
+  navigator.mediaDevices.getDisplayMedia({ cursor: true }).then(
+    
+    myVideoStream => {
+      const screenTrack = myVideoStream.getTracks()[0] = true ;
+
+      setshareScreen();
+      myVideoStream.current.find(myVideoStream=> myVideoStream.track.kind === 'video').replaceTrack(screenTrack);
       screenTrack.onended = function() {
-          userId.current.find(userid => userid.track.kind === "video").replaceTrack(userStream.current.getTracks()[1]);
+         myVideoStream.current.find(myVideoStream => myVideoStream.track.kind === "video").replaceTrack(myVideoStream.current.getTracks()[1]);
       }
-  })
+  }
+  )
 }
+
+const setshareScreen = () => {
+  const html = `
+    <i class="fas fa-screen"></i>
+    <span>share screen</span>
+  `
+  document.querySelector('.main__screen_button').innerHTML = html;
+}
+
+
 function connectToNewUser(userId, stream) {
   const call = myPeer.call(userId, stream)
   const video = document.createElement('video')
@@ -83,6 +103,7 @@ function addVideoStream(video, stream) {
   })
   videoGrid.append(video)
 }
+
 
 
 
