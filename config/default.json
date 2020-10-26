@@ -1,0 +1,4 @@
+{
+    "mongoURI": "mongodb+srv://daniyal321:daniyal321@meetingapp.jzrxp.mongodb.net/meetingapp?retryWrites=true&w=majority",
+    "jwtSecret": "secret"
+}

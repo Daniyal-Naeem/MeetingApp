@@ -12,6 +12,14 @@ const peerServer = ExpressPeerServer(server, {
 });
 const { v4: uuidV4 } = require('uuid')
 
+const connectDB = require('./config/db');
+
+//initial middleware
+app.use(express.json({extended : false}));
+
+// Connect Database
+connectDB();
+
 // Define routes
 app.use ("/api/users" , require("./routes/users"));
 app.use ("/api/auth" , require("./routes/auth"));
