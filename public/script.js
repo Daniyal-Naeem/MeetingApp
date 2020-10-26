@@ -1,11 +1,11 @@
-/* es: 6*/
+/*jshint esversion: 6 */
 
 const socket = io('/')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
   host: '/',
-  port: '3030'
+  port: '443'
 }) 
 
 
@@ -47,6 +47,8 @@ navigator.mediaDevices.getUserMedia({
     scrollToBottom()
   })
 })
+
+
 
 
 

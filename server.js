@@ -12,11 +12,16 @@ const peerServer = ExpressPeerServer(server, {
 });
 const { v4: uuidV4 } = require('uuid')
 
+// Define routes
+app.use ("/api/users" , require("./routes/users"));
+app.use ("/api/auth" , require("./routes/auth"));
+app.use ("/api/crud" , require("./routes/crud"));
+
 app.use('/peerjs', peerServer);
 
 app.set('view engine', 'ejs')
 app.use(express.static('public'))
-
+ 
 app.get('/', (req, res) => {
   res.redirect(`/${uuidV4()}`)
 })
