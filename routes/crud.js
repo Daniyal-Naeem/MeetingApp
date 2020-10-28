@@ -29,9 +29,7 @@ router.post(
     [
       auth,
       [
-        check('classname', 'ClassName is required')
-          .not()
-          .isEmpty(),
+        check('classname', 'ClassName is required').not().isEmpty(),
       ],
     ],
     async (req, res) => {
