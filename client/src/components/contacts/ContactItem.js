@@ -1,22 +1,22 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
-import crudContext from '../../context/crud/crudContext';
+import crudContext from "../../context/crud/crudContext";
 
-const MeetingItem = ({ meeting }) => {
+const ContactItem = ({ contact }) => {
   const CrudContext = useContext(crudContext);
-  const { deleteMeeting, setCurrent, clearCurrent } = CrudContext;
+  const { deleteContact, setCurrent, clearCurrent } = CrudContext;
 
-  const { _id, classname, classid, type } = meeting;
+  const { _id, name, email, type } = contact;
 
   const onDelete = () => {
-    deleteMeeting(_id);
+    deleteContact(_id);
     clearCurrent();
   };
 
   return (
     <div className='card bg-light'>
       <h3 className='text-primary text-left'>
-        {classname}{' '}
+        {name}{' '}
         <span
           style={{ float: 'right' }}
           className={
@@ -28,17 +28,17 @@ const MeetingItem = ({ meeting }) => {
         </span>
       </h3>
       <ul className='list'>
-        {classid(
+        {email && (
           <li>
-            <i className='fas fa-envelope-open' /> {classid}
+            <i className='fas fa-envelope-open' /> {email}
           </li>
         )}
-      
+        
       </ul>
       <p>
         <button
           className='btn btn-dark btn-sm'
-          onClick={() => setCurrent(meeting)}
+          onClick={() => setCurrent(contact)}
         >
           Edit
         </button>
@@ -50,8 +50,8 @@ const MeetingItem = ({ meeting }) => {
   );
 };
 
-MeetingItem.propTypes = {
-  meeting: PropTypes.object.isRequired
+ContactItem.propTypes = {
+  contact: PropTypes.object.isRequired
 };
 
-export default MeetingItem;
+export default ContactItem;

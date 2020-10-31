@@ -1,45 +1,44 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
-import MeetingItem from './Meetingitem';
+import ContactItem from './ContactItem';
 //import Spinner from '../layout/Spinner';
 import crudContext from "../../context/crud/crudContext";
 
-const Meetings = () => {
-
+const Contacts = () => {
   const CrudContext = useContext(crudContext);
 
-  const { meetings, filtered, getMeetings, loading } = CrudContext;
+  const { contacts, filtered, getContacts, loading } = CrudContext;
 
-  useEffect(() => {
-    getMeetings();
+//   useEffect(() => {
+//     getContacts();  }, []);
     // eslint-disable-next-line
-  }, []);
-
-  if (meetings !== null && meetings.length === 0 && !loading) {
-    return (<h4>Please add a Meeting</h4>);
+ 
+  //&& contacts.length === 0
+  if (contacts !== null  && !loading) {
+    return <h4>Please add a Meeting</h4>;
   }
 
   return (
     <Fragment>
-      {meetings !== null && !loading ? (
+      {contacts !== null && !loading ? (
         <TransitionGroup>
           {filtered !== null
-            ? filtered.map(meeting => (
+            ? filtered.map(contact => (
                 <CSSTransition
-                  key={meeting._id}
+                  key={contact._id}
                   timeout={500}
                   classNames='item'
                 >
-                  <MeetingItem meeting={meeting} />
+                  <ContactItem contact={contact} />
                 </CSSTransition>
               ))
-            : meetings.map(meeting => (
+            : contacts.map(contact => (
                 <CSSTransition
-                  key={meeting._id}
+                  key={contact._id}
                   timeout={500}
                   classNames='item'
                 >
-                  <MeetingItem meeting={meeting} />
+                  <ContactItem contact={contact} />
                 </CSSTransition>
               ))}
         </TransitionGroup>
@@ -50,4 +49,4 @@ const Meetings = () => {
   );
 };
 
-export default Meetings;
+export default Contacts;

@@ -1,40 +1,40 @@
 import React, { useState, useContext, useEffect } from 'react';
-import crudContext from '../../context/crud/crudContext';
+import crudContext from "../../context/crud/crudContext";
 
-const MeetingtForm = () => {
+const ContactForm = () => {
   const CrudContext = useContext(crudContext);
 
-  const { addMeeting, updateMeeting, clearCurrent, current } = crudContext;
+  const { addContact, updateContact, clearCurrent, current } = CrudContext;
 
   useEffect(() => {
     if (current !== null) {
-      setMeeting(current);
+      setContact(current);
     } else {
-      setMeeting({
-        classname: '',
-        class: '',
+      setContact({
+        name: '',
+        email: '',
         type: 'personal'
       });
     }
   }, [CrudContext, current]);
 
-  const [meeting, setMeeting] = useState({
-    classname: '',
-    classid: '',
+  const [contact, setContact] = useState({
+    name: '',
+    email: '',
     type: 'personal'
   });
 
-  const { classname, classid,  type } = meeting;
+  const { name, email, type } = contact;
 
   const onChange = e =>
-    setMeeting({ ...meeting, [e.target.classname]: e.target.value });
+    setContact({ ...contact, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
     if (current === null) {
-      addMeeting(meeting);
+      addContact(contact);
     } else {
-      updateMeeting(meeting);
+      updateContact(contact);
     }
     clearAll();
   };
@@ -45,24 +45,24 @@ const MeetingtForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <h2 className='text-primary'>
+      <h2 className='text-danger'>
         {current ? 'Edit Meeting' : 'Add Meeting'}
       </h2>
       <input
         type='text'
-        placeholder='ClassName'
-        name='classname'
-        value={classname}
+        placeholder='Class Name'
+        name='name'
+        value={name}
         onChange={onChange}
       />
       <input
-        type='classId'
-        placeholder='ClassId'
-        name='ClassId'
-        value={classid}
+        type='email'
+        placeholder='Class Id'
+        name='email'
+        value={email}
         onChange={onChange}
       />
-     
+      
       <h5>Meeting Type</h5>
       <input
         type='radio'
@@ -84,7 +84,7 @@ const MeetingtForm = () => {
         <input
           type='submit'
           value={current ? 'Update Meeting' : 'Add Meeting'}
-          className='btn btn-primary btn-block'
+          className='btn btn-danger btn-block'
         />
       </div>
       {current && (
@@ -98,4 +98,4 @@ const MeetingtForm = () => {
   );
 };
 
-export default MeetingtForm;
+export default ContactForm;
