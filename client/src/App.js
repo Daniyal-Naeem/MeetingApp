@@ -9,10 +9,17 @@ import About from './components/pages/About';
 import Register from './components/auth/Register';
 import Login from './components/auth/Login';
 import AlertState from './context/alert/AlertState';
+import AuthState from './context/auth/AuthState';
 import Alerts from "./components/layout/Alerts";
+import setAuthToken from "./utils/setAuthToken";
+
+if (localStorage.token){
+  setAuthToken(localStorage.token);
+}
 
 const App = () => {
   return (
+    <AuthState>
     <CrudState>
     <AlertState>
     <Router>
@@ -31,6 +38,7 @@ const App = () => {
           </Router>
           </AlertState>
           </CrudState>
+          </AuthState>
   );
 }
 
