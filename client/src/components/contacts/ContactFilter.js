@@ -1,11 +1,11 @@
 import React, { useContext, useRef, useEffect } from 'react';
-import crudContext from "../../context/crud/crudContext";
+import CrudContext from "../../context/crud/crudContext";
 
 const ContactFilter = () => {
-  const CrudContext = useContext(crudContext);
+  const crudContext = useContext(CrudContext);
   const text = useRef('');
 
-  const { filterContacts, clearFilter, filtered } = CrudContext;
+  const { filterMeetings, clearFilter, filtered } = crudContext;
 
   useEffect(() => {
     if (filtered === null) {
@@ -15,7 +15,7 @@ const ContactFilter = () => {
 
   const onChange = e => {
     if (text.current.value !== '') {
-      filterContacts(e.target.value);
+      filterMeetings(e.target.value);
     } else {
       clearFilter();
     }

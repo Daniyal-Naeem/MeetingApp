@@ -18,7 +18,7 @@ import {
 
 const CrudState = props => {
   const initialState = {
-    meetings: null,
+    meetings: [],
     current: null,
     filtered: null,
     error: null
@@ -29,7 +29,7 @@ const CrudState = props => {
   // Get Meetings
   const getMeetings = async () => {
     try {
-      const res = await axios.get('/api/meetings');
+      const res = await axios.get('/api/crud');
 
       dispatch({
         type: GET_MEETINGS,
@@ -52,7 +52,7 @@ const CrudState = props => {
     };
 
     try {
-      const res = await axios.post('/api/meetings', meeting, config);
+      const res = await axios.post('/api/crud', meeting, config);
 
       dispatch({
         type: ADD_MEETING,
@@ -69,7 +69,7 @@ const CrudState = props => {
   // Delete Meeting
   const deleteMeeting = async id => {
     try {
-      await axios.delete(`/api/meetings/${id}`);
+      await axios.delete(`/api/crud/${id}`);
 
       dispatch({
         type: DELETE_MEETING,
@@ -93,11 +93,11 @@ const CrudState = props => {
 
     try {
       const res = await axios.put(
-        `/api/meetings/${meeting._id}`,
+        `/api/crud/${meeting._id}`,
         meeting,
         config
       );
-
+ 
       dispatch({
         type: UPDATE_MEETING,
         payload: res.data
@@ -126,7 +126,7 @@ const CrudState = props => {
   };
 
   // Filter Meeting
-  const filterMeeting = text => {
+  const filterMeetings = text => {
     dispatch({ type: FILTER_MEETINGS, payload: text });
   };
 
@@ -147,7 +147,7 @@ const CrudState = props => {
         setCurrent,
         clearCurrent,
         updateMeeting,
-        filterMeeting,
+        filterMeetings,
         clearFilter,
         getMeetings,
         clearMeetings

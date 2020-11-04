@@ -1,49 +1,50 @@
 import React, { Fragment, useContext, useEffect } from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import ContactItem from './ContactItem';
-//import Spinner from '../layout/Spinner';
+import Spinner from '../layout/Spinner';
 import crudContext from "../../context/crud/crudContext";
 
 const Contacts = () => {
   const CrudContext = useContext(crudContext);
 
-  const { contacts, filtered, getContacts, loading } = CrudContext;
+  const { meetings, filtered, getMeetings, loading } = CrudContext;
 
-//   useEffect(() => {
-//     getContacts();  }, []);
-    // eslint-disable-next-line
- 
-  //&& contacts.length === 0
-  if (contacts !== null  && !loading) {
-    return <h4>Please add a Meeting</h4>;
-  }
+  
+     useEffect(() => {
+      getMeetings();
+      // eslint-disable-next-line
+    }, []);
+  
+    if (meetings !== null && meetings.length === 0 && !loading) {
+      return <h4>Please add a meeting</h4>;
+    }
 
   return (
     <Fragment>
-      {contacts !== null && !loading ? (
+      {meetings !== null && !loading ? (
         <TransitionGroup>
           {filtered !== null
-            ? filtered.map(contact => (
+            ? filtered.map(meeting => (
                 <CSSTransition
-                  key={contact._id}
+                  key={meeting._id}
                   timeout={500}
                   classNames='item'
                 >
-                  <ContactItem contact={contact} />
+                  <ContactItem meeting={meeting} />
                 </CSSTransition>
               ))
-            : contacts.map(contact => (
+            : meetings.map(meeting => (
                 <CSSTransition
-                  key={contact._id}
+                  key={meeting._id}
                   timeout={500}
                   classNames='item'
                 >
-                  <ContactItem contact={contact} />
+                  <ContactItem meeting={meeting} />
                 </CSSTransition>
               ))}
         </TransitionGroup>
       ) : (
-        {/* <Spinner /> */}
+        <Spinner />
       )}
     </Fragment>
   );

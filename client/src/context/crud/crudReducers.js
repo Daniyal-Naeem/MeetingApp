@@ -64,7 +64,7 @@ import {
           ...state,
           filtered: state.meetings.filter(meeting => {
             const regex = new RegExp(`${action.payload}`, 'gi');
-            return meeting.name.match(regex) || meeting.email.match(regex);
+            return meeting.classname.match(regex) || meeting.classid.match(regex);
           })
         };
       case CLEAR_FILTER:

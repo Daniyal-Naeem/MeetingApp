@@ -4,37 +4,37 @@ import crudContext from "../../context/crud/crudContext";
 const ContactForm = () => {
   const CrudContext = useContext(crudContext);
 
-  const { addContact, updateContact, clearCurrent, current } = CrudContext;
+  const { addMeeting, updateMeeting, clearCurrent, current } = CrudContext;
 
   useEffect(() => {
     if (current !== null) {
-      setContact(current);
+      setMeeting(current);
     } else {
-      setContact({
-        name: '',
-        email: '',
+      setMeeting({
+        classname: '',
+        classid: '',
         type: 'personal'
       });
     }
   }, [CrudContext, current]);
 
-  const [contact, setContact] = useState({
-    name: '',
-    email: '',
+  const [meeting, setMeeting] = useState({
+    classname: '',
+    classid: '',
     type: 'personal'
   });
 
-  const { name, email, type } = contact;
+  const { classname, classid, type } = meeting;
 
   const onChange = e =>
-    setContact({ ...contact, [e.target.name]: e.target.value });
+    setMeeting({ ...meeting, [e.target.name]: e.target.value });
 
   const onSubmit = e => {
     e.preventDefault();
     if (current === null) {
-      addContact(contact);
+      addMeeting(meeting);
     } else {
-      updateContact(contact);
+      updateMeeting(meeting);
     }
     clearAll();
   };
@@ -45,21 +45,24 @@ const ContactForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
+      
       <h2 className='text-danger'>
-        {current ? 'Edit Meeting' : 'Add Meeting'}
+  
+      <i class="fas fa-chalkboard-teacher"></i>   {current ? 'Edit Meeting' : 'Add Meeting'}  
       </h2>
+      
       <input
         type='text'
         placeholder='Class Name'
-        name='name'
-        value={name}
+        name='classname'
+        value={classname}
         onChange={onChange}
       />
-      <input
-        type='email'
+     <input
+        type='text'
         placeholder='Class Id'
-        name='email'
-        value={email}
+        name='classid'
+        value={classid}
         onChange={onChange}
       />
       

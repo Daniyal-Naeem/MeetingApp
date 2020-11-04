@@ -2,21 +2,21 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import crudContext from "../../context/crud/crudContext";
 
-const ContactItem = ({ contact }) => {
+const ContactItem = ({ meeting }) => {
   const CrudContext = useContext(crudContext);
-  const { deleteContact, setCurrent, clearCurrent } = CrudContext;
+  const { deleteMeeting, setCurrent, clearCurrent } = CrudContext;
 
-  const { _id, name, email, type } = contact;
+  const { _id, classname, classid, type } = meeting;
 
   const onDelete = () => {
-    deleteContact(_id);
+    deleteMeeting(_id);
     clearCurrent();
   };
 
   return (
     <div className='card bg-light'>
-      <h3 className='text-primary text-left'>
-        {name}{' '}
+      <h3 className='text-danger text-left'>
+        <a href="http://localhost:3030/">{classname}{' '}</a>
         <span
           style={{ float: 'right' }}
           className={
@@ -28,9 +28,9 @@ const ContactItem = ({ contact }) => {
         </span>
       </h3>
       <ul className='list'>
-        {email && (
+        {classid && (
           <li>
-            <i className='fas fa-envelope-open' /> {email}
+          <i class="fas fa-chalkboard-teacher"></i>   {classid}
           </li>
         )}
         
@@ -38,7 +38,7 @@ const ContactItem = ({ contact }) => {
       <p>
         <button
           className='btn btn-dark btn-sm'
-          onClick={() => setCurrent(contact)}
+          onClick={() => setCurrent(meeting)}
         >
           Edit
         </button>
@@ -51,7 +51,7 @@ const ContactItem = ({ contact }) => {
 };
 
 ContactItem.propTypes = {
-  contact: PropTypes.object.isRequired
+  meeting: PropTypes.object.isRequired
 };
 
 export default ContactItem;
