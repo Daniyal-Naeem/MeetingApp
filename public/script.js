@@ -8,7 +8,6 @@ const myPeer = new Peer(undefined, {
   port: '443'
 }) 
 
-
 let myVideoStream;
 const myVideo = document.createElement('video')
 myVideo.muted = true;
@@ -31,8 +30,10 @@ navigator.mediaDevices.getUserMedia({
   })
 
   socket.on('user-connected', userId => {
-    connectToNewUser(userId, stream)
+    connectToNewUser(userId, stream )
   })
+
+
   // input value
   let text = $("input");
   // when press enter send message
@@ -43,13 +44,11 @@ navigator.mediaDevices.getUserMedia({
     }
   });
   socket.on("createMessage", message => {
-    $("ul").append(`<li class="message"><b>user</b><br/>${message}</li>`);
-    scrollToBottom()
+    $("ul").append(`<li class="message">$users <br/>${message}</li>`);
+    scrollToBottom() 
   })
+  
 })
-
-
-
 
 
 socket.on('user-disconnected', userId => {
