@@ -16,7 +16,7 @@ const ContactItem = ({ meeting }) => {
   return (
     <div className='card bg-light'>
       <h3 className='text-danger text-left'>
-        <a href="http://localhost:3030/">{classname}{' '}</a>
+      <a href="http://localhost:3030/">{classname}{' '}</a>
         <span
           style={{ float: 'right' }}
           className={
