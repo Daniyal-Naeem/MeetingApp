@@ -7,10 +7,12 @@ app.use(cors())
 const server = require('http').Server(app)
 const io = require('socket.io')(server)
 const { ExpressPeerServer } = require('peer');
+const  formatMessage = require("./utils/messages");
+ 
 
 const path = require('path');
 
-
+const botName = 'ChatCord Bot';
 const peerServer = ExpressPeerServer(server, {
   debug: true
 });
@@ -43,20 +45,20 @@ app.get('/:room', (req, res) => {
 })
 
 io.on('connection', socket => {
-  socket.on('join-room', (roomId, userId) => {
+  socket.on('join-room', (roomId, userId, botName) => {
 
     socket.join(roomId)
 
-    socket.to(roomId).broadcast.emit('user-connected', userId );
+    socket.to(roomId).broadcast.emit('user-connected', userId ,botName);
     // messages
     socket.on('message', (message) => {
       
       //send message to the same room
-      io.to(roomId).emit('createMessage', message )
+      io.to(roomId).emit('createMessage', message) 
   }); 
 
     socket.on('disconnect', () => {
-      socket.to(roomId).broadcast.emit('user-disconnected', userId )
+      socket.to(roomId).broadcast.emit('user-disconnected', userId, botName )
     })
   })
 })
@@ -73,5 +75,3 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 server.listen(process.env.PORT||3030)
-
-

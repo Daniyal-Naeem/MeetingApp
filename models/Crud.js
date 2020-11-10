@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const {check, validationResult} = require('express-validator');
 const auth = require("../middleware/auth");
-const User = require('../models/User');
+const User = require('./User');
 const Crud = require('../models/Crud');
 
 const CrudSchema = mongoose.Schema({
