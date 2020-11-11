@@ -4,6 +4,7 @@ import ContactItem from './ContactItem';
 import Spinner from '../layout/Spinner';
 import crudContext from "../../context/crud/crudContext";
 
+
 const Contacts = () => {
   const CrudContext = useContext(crudContext);
 

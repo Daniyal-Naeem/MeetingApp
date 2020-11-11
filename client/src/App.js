@@ -13,7 +13,10 @@ import AuthState from './context/auth/AuthState';
 import Alerts from "./components/layout/Alerts";
 import setAuthToken from "./utils/setAuthToken";
 import PrivateRoute from "./components/routing/PrivateRoute";
-import Room from "./components/pages/Room";
+import Join from "./components/pages/Join";
+import Chat from "./components/pages/Chat";
+
+
 
 if (localStorage.token){
   setAuthToken(localStorage.token);
@@ -34,7 +37,8 @@ const App = () => {
                   <Route exact path='/about' component={About} />
                   {/* <Route exact path='/register' component={Register} /> */}
                   <Route exact path='/login' component={Login} />
-                  <Route exact path='/room' component={Room} />
+
+
                   
                 </Switch>
               </div>

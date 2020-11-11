@@ -1,7 +1,8 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import crudContext from "../../context/crud/crudContext";
-import { Link } from 'react-router-dom';
+ 
+
 
 
 const ContactItem = ({ meeting }) => {
@@ -19,9 +20,8 @@ const ContactItem = ({ meeting }) => {
   return (
     <div className='card bg-light'>
       <h3 className='text-danger text-left'>
-      <Link to='http://localhost:3030/'>  {classname}</Link>     
      
-      {/* <a href="http://localhost:3030/">{' '}</a> */}
+     <a href="http://localhost:3030/">  {classname}</a>
         <span
           style={{ float: 'right' }}
           className={

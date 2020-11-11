@@ -1,10 +1,10 @@
 /*jshint esversion: 6 */
 
-const socket = io('/')
+const socket = io('/app')
 const videoGrid = document.getElementById('video-grid')
 const myPeer = new Peer(undefined, {
   path: '/peerjs',
-  host: '/',
+  host: '/app',
   port: '443'
 }) 
 
