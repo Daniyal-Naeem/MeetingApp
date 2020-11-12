@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import crudContext from "../../context/crud/crudContext";
+
  
 
 
@@ -13,7 +14,7 @@ const ContactItem = ({ meeting }) => {
 
 
   const onDelete = () => {
-    deleteMeeting(_id);
+    deleteMeeting(_id); 
     clearCurrent();
   };
 
@@ -21,7 +22,8 @@ const ContactItem = ({ meeting }) => {
     <div className='card bg-light'>
       <h3 className='text-danger text-left'>
      
-     <a href="http://localhost:3030/">  {classname}</a>
+      {classname}
+
         <span
           style={{ float: 'right' }}
           className={
