@@ -2,9 +2,6 @@ import React, { useContext } from 'react';
 import PropTypes from 'prop-types';
 import crudContext from "../../context/crud/crudContext";
 
- 
-
-
 
 const ContactItem = ({ meeting }) => {
   const CrudContext = useContext(crudContext);
@@ -22,7 +19,7 @@ const ContactItem = ({ meeting }) => {
     <div className='card bg-light'>
       <h3 className='text-danger text-left'>
      
-      {classname}
+    <a href= "https://rocky-chamber-92882.herokuapp.com/">  {classname} </a>
 
         <span
           style={{ float: 'right' }}
