@@ -74,8 +74,4 @@ if (process.env.NODE_ENV === 'production') {
   );
 }
 
-server.listen(process.env.PORT||3030)
-
-
-
-
+server.listen(process.env.PORT||5000)
